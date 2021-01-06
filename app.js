@@ -28,20 +28,8 @@ app.get('/', (req, res) => {
 
 function updateSite(res, name) {
 
-    var extend = '.pdf'
-    var fileName = name.search(".")
-    fileName = name.slice(0, fileName)
-    const enterPath = path.join(__dirname, `/userWord/${name}`);
-    const outputPath = path.join(__dirname, `/outputPDF/${fileName}${extend}`);
+    
 
-    const file = fs.readFileSync(enterPath);
-
-    libre.convert(file, extend, undefined, (err, done) => {
-        if (err) {
-          console.log(`Error converting file: ${err}`);
-        }
-        fs.writeFileSync(outputPath, done);
-    });
 
     text = "Download file here"
 
