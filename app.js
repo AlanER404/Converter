@@ -22,17 +22,20 @@ app.get('/', (req, res) => {
         converted: i,
         download: text,
         class: "no-file",
-        div: "download-div"
+        div: "download-div",
+        file: ""
     })    
 })
 
 function updateSite(res, name) {
 
     var extend = '.pdf'
-    var fileName = name.search(".")
+    var fileName = name.search(".docx")
     fileName = name.slice(0, fileName)
+    fileName += extend
+    console.log(fileName)
     const enterPath = path.join(__dirname, `/userWord/${name}`);
-    const outputPath = path.join(__dirname, `/outputPDF/${fileName}${extend}`);
+    const outputPath = path.join(__dirname, `/outputPDF/${fileName}`);
 
     const file = fs.readFileSync(enterPath);
 
@@ -41,16 +44,20 @@ function updateSite(res, name) {
           console.log(`Error converting file: ${err}`);
         }
         fs.writeFileSync(outputPath, done);
+
+        text = "Download file here"
+        let file = `/outputPDF/${fileName}`
+
+        res.render("index.hbs", {
+            converted: i,
+            download: text,
+            class: "yes-file",
+            div: "download-div-yes",
+            file: file
+        })
     });
 
-    text = "Download file here"
-
-    res.render("index.hbs", {
-        converted: i,
-        download: text,
-        class: "yes-file",
-        div: "download-div-yes"
-    })
+    
 
 }
 

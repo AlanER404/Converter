@@ -29,11 +29,11 @@
                             <img src="../public/img/fileicon.svg" alt=".">
                             Chose File
                         </label>
-                        <div class="submit-div">
+                        <form class="submit-div" method="GET" action={{ file }}>
                             <button type="submit" class="submit">
                                 <img src="../public/img/convert.svg" alt=".">
                             </button>
-                        </div>
+                        </form>
                     </form>
                     <div class= {{ div }} id="download-btn">
                         <button class={{ class }}><img src="../public/img/download.svg" alt="."> {{ download }}</button>
