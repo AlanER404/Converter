@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/css/index.css">
+    <title>ConvertO</title>
+</head>
+<body>
+    <header>
+        <h5 class="logo">Logo</h5>
+        <p class="num-con">converted files: {{ converted }}</p>
+    </header>
+    <main>
+        <div class="convert-txt">
+            <h1>Convert Word to PDF Documents Online for FREE</h1>
+        </div>
+
+        <div class="down">
+            <div class="down-left">
+                <img src="../public/img/wtp.svg" alt="problem">
+            </div>
+            <div class="down-right">
+                <div>
+                    <!--action="upload" posalje na rutu /upload method="post" postavit ce; name: ime za file-->
+                    <form class='fileupload' action="/" method="POST" enctype="multipart/form-data">
+                        <input type="file" id="file" name="upfile" value="" accept=".docx, .txt">
+                        <label for="file" class="input-file">
+                            <img src="../public/img/fileicon.svg" alt=".">
+                            Chose File
+                        </label>
+                        <div class="submit-div">
+                            <button type="submit" class="submit">
+                                <img src="../public/img/convert.svg" alt=".">
+                            </button>
+                        </div>
+                    </form>
+                    <div class= {{ div }} id="download-btn">
+                        <button class={{ class }}><img src="../public/img/download.svg" alt="."> {{ download }}</button>
+                    </div>
+                    <div class="or">
+                        <hr>
+                        <p>or download from mail</p>
+                    </div>
+                    <form class="get-email" method="GET" enctype="text/plain">
+                        <input type="email" class="email-input" name="" id="" value="" placeholder="Enter your mail">
+                        <div>
+                            <button type="submit" class="send">
+                                <img src="../public/img/gmail.svg" alt=".">
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
