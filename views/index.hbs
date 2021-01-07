@@ -22,21 +22,22 @@
             </div>
             <div class="down-right">
                 <div>
-                    <!--action="upload" posalje na rutu /upload method="post" postavit ce; name: ime za file-->
                     <form class='fileupload' action="/" method="POST" enctype="multipart/form-data">
                         <input type="file" id="file" name="upfile" value="" accept=".docx, .txt">
                         <label for="file" class="input-file">
                             <img src="../public/img/fileicon.svg" alt=".">
                             Chose File
                         </label>
-                        <form class="submit-div" method="GET" action={{ file }}>
+                        <div class="submit-div">
                             <button type="submit" class="submit">
                                 <img src="../public/img/convert.svg" alt=".">
                             </button>
-                        </form>
+                        </div>
                     </form>
                     <div class= {{ div }} id="download-btn">
-                        <button class={{ class }}><img src="../public/img/download.svg" alt="."> {{ download }}</button>
+                        <a href="{{ file }}" class={{ class }} {{ maybe }}={{ filename }}>
+                            <img src="../public/img/download.svg" alt="."> {{ download }}
+                        </a>
                     </div>
                     <div class="or">
                         <hr>

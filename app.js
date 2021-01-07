@@ -1,7 +1,7 @@
 const express = require('express')
 const upload = require('express-fileupload')
 const app = express()
-const port = 4000
+const port = 8080
 
 const libre = require("libreoffice-convert")
 const path = require('path');
@@ -11,6 +11,7 @@ const fs = require('fs');
 app.set("view engine", "hbs");
 app.use("/public/css", express.static(__dirname + '/public/css'));
 app.use("/public/img", express.static(__dirname + '/public/img'))
+app.use("/outputPDF", express.static(__dirname + '/outputPDF'))
 app.use(upload())
 
 let i = 0;
@@ -23,7 +24,7 @@ app.get('/', (req, res) => {
         download: text,
         class: "no-file",
         div: "download-div",
-        file: ""
+        filename: ""
     })    
 })
 
@@ -46,21 +47,22 @@ function updateSite(res, name) {
         fs.writeFileSync(outputPath, done);
 
         text = "Download file here"
-        let file = `/outputPDF/${fileName}`
+        let filee = `outputPDF/${fileName}`
 
         res.render("index.hbs", {
             converted: i,
             download: text,
             class: "yes-file",
             div: "download-div-yes",
-            file: file
+            file: filee,
+            maybe: "download",
+            filename:`${fileName}`
         })
     });
 
     
 
 }
-
 
 app.post("/", (req, res) => {
     if(req.files.upfile){
@@ -81,6 +83,8 @@ app.post("/", (req, res) => {
         res.send("No file selected!");
     }
 })
+
+app.get("/")
 
 
 app.listen(port)
