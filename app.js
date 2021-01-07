@@ -49,6 +49,8 @@ function updateSite(res, name) {
         text = "Download file here"
         let filee = `outputPDF/${fileName}`
 
+        i++
+
         res.render("index.hbs", {
             converted: i,
             download: text,
@@ -59,9 +61,6 @@ function updateSite(res, name) {
             filename:`${fileName}`
         })
     });
-
-    
-
 }
 
 app.post("/", (req, res) => {
@@ -83,8 +82,6 @@ app.post("/", (req, res) => {
         res.send("No file selected!");
     }
 })
-
-app.get("/")
 
 
 app.listen(port)
