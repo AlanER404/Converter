@@ -277,10 +277,6 @@ input[type="file"] {
     user-select: none; 
 }
 
-
-
-
-
 .download-div-yes {
     display: flex;
     justify-content: center;
