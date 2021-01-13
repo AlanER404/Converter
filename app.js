@@ -1,7 +1,6 @@
 const express = require('express')
 const upload = require('express-fileupload')
 const app = express()
-const port = 8080
 
 const libre = require("libreoffice-convert")
 const path = require('path');
@@ -188,4 +187,5 @@ app.get("/adminpage", (req, res) => {
     })
 })
 
-app.listen(process.env.PORT || port)
+const port = process.env.PORT || 8080
+app.listen(port)
