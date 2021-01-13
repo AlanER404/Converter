@@ -180,7 +180,7 @@ app.post("/thanks", (req, res) => {
     
 })
 
-app.get("/adminconverter", (req, res) => {
+app.get("/adminpage", (req, res) => {
     let adminJSON = fs.readFileSync("./emails/emails.JSON")
     adminJSON = JSON.parse(adminJSON)
     res.render("admin.hbs", {
