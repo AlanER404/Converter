@@ -121,7 +121,8 @@ app.post("/", (req, res) => {
         })
     } else{
         res.render("error.hbs", {
-            text: "No file selected",
+            text: "No file selected!",
+            todo: "In order for this to work, you need to upload word file to get converted pdf file. Press app icon to go back to home page",
             converted: i
         })
     }
@@ -162,7 +163,7 @@ app.post("/thanks", (req, res) => {
     }
     else {
         res.render("error.hbs", {
-            text: "Please, first select a file.",
+            text: "No file selected!",
             todo: "In order for this to work, you need to upload word file to get converted pdf file. Press app icon to go back to home page",
             converted: i
         })
