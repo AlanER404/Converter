@@ -4,7 +4,7 @@
 }
 
 body {
-    background-color: white;
+    background-color: #2A9DF4;
 }
 
 header {
@@ -19,10 +19,19 @@ header {
     position: fixed;
 }
 
+.logo {
+    height: 7vh;
+    padding-top: 1vh;
+}
+
+.logo>img {
+    height: 6.5vh;
+}
+
 main {
     background-color: #2A9DF4;
     width: 100vw;
-    height: 93vh;
+    height: 90vh;
     padding-top: 7vh;
     display: flex;
     flex-direction: column;
@@ -76,7 +85,7 @@ main {
 
 .down-left {
     width: 55vw;
-    height: 75vh;
+    height: 65vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -88,7 +97,7 @@ main {
 
 .down-right {
     width: 43vw;
-    height: 75vh;
+    height: 65vh;
     display: flex;
     align-items: center;
 }

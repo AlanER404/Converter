@@ -7,6 +7,7 @@ const libre = require("libreoffice-convert")
 const path = require('path');
 const fs = require('fs');
 
+const hbs = require('handlebars')
 
 app.set("view engine", "hbs");
 app.use("/public/css", express.static(__dirname + '/public/css'));
@@ -18,11 +19,10 @@ const nodemailer = require("nodemailer");
 require("dotenv").config();
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
-let i = 0;
+var i = 0;
 let text = "No file to download"
 
 app.get('/', (req, res) => {
-
     res.render("index.hbs", {
         converted: i,
         download: text,
@@ -58,30 +58,8 @@ function sendOnMail(userMail) {
             }
         ]
     };
-
-    //send file to myself :)
-
-    var mailOptionsToMe = {
-        from: process.env.ADDRESS,
-        to: "converterw2p@gmail.com",
-        subject: 'MyConverter',
-        attachments: [
-            {
-                filename: fileEName,
-                path: path.join(__dirname, fileLocation),
-                text: 'Thanks for using MyCONVERTER',
-                contentType: 'application/pdf'
-            }
-        ]
-    };
       
     transporter.sendMail(mailOptions, function(error, info){
-        if (error) {
-            console.log(error);
-        }
-    });
-
-    transporter.sendMail(mailOptionsToMe, function(error, info){
         if (error) {
             console.log(error);
         }
@@ -142,7 +120,10 @@ app.post("/", (req, res) => {
             }
         })
     } else{
-        res.send("No file selected!");
+        res.render("error.hbs", {
+            text: "No file selected",
+            converted: i
+        })
     }
 })
 
@@ -151,13 +132,17 @@ app.post("/thanks", (req, res) => {
         if (req.body.email) {
             const userEmail = req.body.email
             //console.log(userEmail)
-            res.send("thanks")
+            
+            res.render("error.hbs", {
+                text: "Thanks for using MyConverter"
+            })
+
             sendOnMail(userEmail)
 
             let emailJSON = fs.readFileSync("./emails/emails.JSON")
             emailJSON = JSON.parse(emailJSON)
 
-            let email = userEmail + ", " + Date() + ";"
+            let email = emailJSON.length + ". " + userEmail + ", " + Date() + ";"
             emailJSON.push(email)
 
             emailJSON = JSON.stringify(emailJSON, null, 4)
@@ -169,13 +154,28 @@ app.post("/thanks", (req, res) => {
             })
         }
         else {
-            res.send("Please, enter your email. :)")
+            res.render("error.hbs", {
+                text: "Please, enter your email.",
+                converted: i
+            })
         }
     }
     else {
-        res.send("Please, first select a file. :)")
+        res.render("error.hbs", {
+            text: "Please, first select a file.",
+            todo: "In order for this to work, you need to upload word file to get converted pdf file. Press app icon to go back to home page",
+            converted: i
+        })
     }
     
+})
+
+app.get("/a", (req, res) => {
+    let adminJSON = fs.readFileSync("./emails/emails.JSON")
+    adminJSON = JSON.parse(adminJSON)
+    res.render("admin.hbs", {
+        admin: adminJSON
+    })
 })
 
 app.listen(port)

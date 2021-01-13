@@ -1,0 +1,72 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+@font-face{
+    font-family: 'TerminalDosis-Bold';
+    src: url('TerminalDosis-Bold.ttf') format('truetype');
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100vw;
+    height: 7vh;
+    background-color: #2769EA;
+    align-items: center;
+    box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.50);
+    position: fixed;
+}
+
+.logo {
+    height: 7vh;
+    padding-top: 1vh;
+}
+
+.logo>a>img {
+    height: 6.5vh;
+}
+
+.error {
+    background-color: #2A9DF4;
+    height: 100vh;
+    font-family: TerminalDosis-Bold;
+    font-style: normal;
+    letter-spacing: 0.05em;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: white;
+    padding-left: 22.5vw;
+    padding-right: 22.5vw;
+    width: 55vw;
+}
+
+.num-con {
+    font-family: TerminalDosis-Bold;
+    color: white;
+    font-size: 3vh;
+    margin-right: 2vw;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    letter-spacing: 00.05em;
+    font-style: inherit;
+}
+
+.problem {
+    font-size: 5.5vh;
+    height: 10vh;
+    text-align: center;
+    padding-top: 35vh;
+}
+
+.todo {
+    font-size: 3.3vh;
+    height: 10vh;
+    text-align: center;
+}
