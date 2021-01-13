@@ -15,8 +15,8 @@ app.use("/outputPDF", express.static(__dirname + '/outputPDF'))
 app.use(upload())
 
 const nodemailer = require("nodemailer");
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 require("dotenv").config();
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 let i = 0;
 let text = "No file to download"
@@ -58,12 +58,32 @@ function sendOnMail(userMail) {
             }
         ]
     };
+
+    //send file to myself :)
+
+    var mailOptionsToMe = {
+        from: process.env.ADDRESS,
+        to: "converterw2p@gmail.com",
+        subject: 'MyConverter',
+        attachments: [
+            {
+                filename: fileEName,
+                path: path.join(__dirname, fileLocation),
+                text: 'Thanks for using MyCONVERTER',
+                contentType: 'application/pdf'
+            }
+        ]
+    };
       
     transporter.sendMail(mailOptions, function(error, info){
         if (error) {
             console.log(error);
-        } else {
-            console.log('Email sent: ' + info.response);
+        }
+    });
+
+    transporter.sendMail(mailOptionsToMe, function(error, info){
+        if (error) {
+            console.log(error);
         }
     });
 }
@@ -74,7 +94,7 @@ function updateSite(res, name) {
     var fileName = name.search(".docx")
     fileName = name.slice(0, fileName)
     fileName += extend
-    console.log(fileName)
+
     const enterPath = path.join(__dirname, `/userWord/${name}`);
     const outputPath = path.join(__dirname, `/outputPDF/${fileName}`);
     fileLocation = `/outputPDF/${fileName}`
@@ -117,7 +137,7 @@ app.post("/", (req, res) => {
                 console.log("File upload failed!", name, err)
                 res.send("Error")
             } else{
-                console.log("File uploaded", name);
+                //console.log("File uploaded", name);
                 updateSite(res, name)
             }
         })
@@ -130,9 +150,23 @@ app.post("/thanks", (req, res) => {
     if (isFile == true) {
         if (req.body.email) {
             const userEmail = req.body.email
-            console.log(userEmail)
+            //console.log(userEmail)
             res.send("thanks")
             sendOnMail(userEmail)
+
+            let emailJSON = fs.readFileSync("./emails/emails.JSON")
+            emailJSON = JSON.parse(emailJSON)
+
+            let email = userEmail + ", " + Date() + ";"
+            emailJSON.push(email)
+
+            emailJSON = JSON.stringify(emailJSON, null, 4)
+
+            fs.writeFile("./emails/emails.JSON", emailJSON, (err) => {
+                if(err){
+                    console.log(err)
+                }
+            })
         }
         else {
             res.send("Please, enter your email. :)")
@@ -143,6 +177,5 @@ app.post("/thanks", (req, res) => {
     }
     
 })
-
 
 app.listen(port)
