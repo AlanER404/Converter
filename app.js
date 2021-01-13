@@ -130,36 +130,28 @@ app.post("/", (req, res) => {
 
 app.post("/thanks", (req, res) => {
     if (isFile == true) {
-        if (req.body.email) {
-            const userEmail = req.body.email
-            //console.log(userEmail)
-            
-            res.render("error.hbs", {
-                text: "Thanks for using MyConverter"
-            })
+        const userEmail = req.body.email
+        //console.log(userEmail)
 
-            sendOnMail(userEmail)
+        sendOnMail(userEmail)
 
-            let emailJSON = fs.readFileSync("./emails/emails.JSON")
-            emailJSON = JSON.parse(emailJSON)
+        let emailJSON = fs.readFileSync("./emails/emails.JSON")
+        emailJSON = JSON.parse(emailJSON)
 
-            let email = emailJSON.length + ". " + userEmail + ", " + Date() + ";"
-            emailJSON.push(email)
+        let email = emailJSON.length + ". " + userEmail + ", " + Date() + ";"
+        emailJSON.push(email)
 
-            emailJSON = JSON.stringify(emailJSON, null, 4)
+        emailJSON = JSON.stringify(emailJSON, null, 4)
 
-            fs.writeFile("./emails/emails.JSON", emailJSON, (err) => {
-                if(err){
-                    console.log(err)
-                }
-            })
-        }
-        else {
-            res.render("error.hbs", {
-                text: "Please, enter your email.",
-                converted: i
-            })
-        }
+        fs.writeFile("./emails/emails.JSON", emailJSON, (err) => {
+            if(err){
+                console.log(err)
+            }
+        })
+
+        res.render("thanks.hbs", {
+            converte: i
+        })
     }
     else {
         res.render("error.hbs", {

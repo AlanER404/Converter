@@ -1,0 +1,92 @@
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+@font-face{
+    font-family: 'TerminalDosis-Bold';
+    src: url('TerminalDosis-Bold.ttf') format('truetype');
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100vw;
+    height: 7vh;
+    background-color: #2769EA;
+    align-items: center;
+    box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.50);
+    position: fixed;
+}
+
+.logo {
+    height: 7vh;
+    padding-top: 1vh;
+}
+
+.logo>a>img {
+    height: 6.5vh;
+}
+
+.num-con {
+    font-family: TerminalDosis-Bold;
+    color: white;
+    font-size: 3vh;
+    margin-right: 2vw;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    letter-spacing: 00.05em;
+    font-style: inherit;
+}
+
+main {
+    background-color: #2A9DF4;
+    width: 100vw;
+    height: 93vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 7vh;
+}
+
+main>div {
+    font-family: TerminalDosis-Bold;
+    background-color: #53B5FF;
+    box-shadow: 0px 0px 40px -1px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    width: 60vw;
+    height: 65vh;
+    padding-left: 3vw;
+    padding-right: 1vw;
+    padding-top: 5vh;
+    display: flex;
+    justify-content: space-between;
+}
+
+h4 {
+    padding-top: 2vh;
+    font-size: 5vh;
+    color: white;
+}
+
+.left {
+    padding-left: 1vw;
+}
+
+ul {
+    color: white;
+    font-size: 3.5vh;
+    padding-top: 2vh;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
