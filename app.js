@@ -19,7 +19,9 @@ const nodemailer = require("nodemailer");
 require("dotenv").config();
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
-var i = 0;
+var i = fs.readFileSync("./emails/counter.json")
+i = JSON.parse(i)
+
 let text = "No file to download"
 
 app.get('/', (req, res) => {
@@ -66,6 +68,10 @@ function sendOnMail(userMail) {
     });
 }
 
+function updateJSON() { 
+      
+}
+
 function updateSite(res, name) {
 
     var extend = '.pdf'
@@ -89,8 +95,17 @@ function updateSite(res, name) {
         text = "Download file here"
         let filee = `outputPDF/${fileName}`
 
+        i = fs.readFileSync("./emails/counter.json")
+        i = JSON.parse(i)
         i++
 
+        r = JSON.stringify(i)
+        fs.writeFileSync("./emails/counter.json", r, (err) => {
+            if (err) {
+                console.log(err)
+            }
+        }) 
+ 
         res.render("index.hbs", {
             converted: i,
             download: text,
@@ -100,7 +115,9 @@ function updateSite(res, name) {
             maybe: "download",
             filename:`${fileName}`
         })
+
     });
+
 }
 
 app.post("/", (req, res) => {
