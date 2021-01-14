@@ -67,10 +67,6 @@ function sendOnMail(userMail) {
     });
 }
 
-function updateJSON() { 
-      
-}
-
 function updateSite(res, name) {
 
     var extend = '.pdf'
@@ -166,7 +162,7 @@ app.post("/thanks", (req, res) => {
         })
 
         res.render("thanks.hbs", {
-            converte: i
+            converted: i
         })
     }
     else {
