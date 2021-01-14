@@ -41,13 +41,13 @@ function sendOnMail(userMail) {
     var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: process.env.ADDRESS,
-            pass: process.env.PASSWORD
+            user: "converterw2p@gmail.com",
+            pass: "Converto0"
         }
     });
       
     var mailOptions = {
-        from: process.env.ADDRESS,
+        from: "converterw2p@gmail.com",
         to: userMail,
         subject: 'MyConverter',
         attachments: [
